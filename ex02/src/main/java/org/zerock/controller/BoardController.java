@@ -77,6 +77,15 @@ public class BoardController {
 		//총글개수 가져오는 서비스
 		model.addAttribute("count", service.count());
 	}
+	// /board/rank
+	@GetMapping("/rank")
+	public void rank(Criteria cri,Model model) {
+		model.addAttribute("rank", service.rank());
+	}
+	@GetMapping("/dist")
+		public void dist() {
+		
+	}
 }
 
 

@@ -5,6 +5,7 @@ import java.util.List;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.CountVO;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.RankVO;
 
 public interface BoardMapper {
 	
@@ -27,8 +28,8 @@ public interface BoardMapper {
 	
 	//글 삭제
 	public int delete(Long bno);
-	
-	
+	//랭크
+	public List<RankVO> rank();
 	
 	
 	

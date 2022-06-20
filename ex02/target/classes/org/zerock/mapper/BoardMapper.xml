@@ -5,6 +5,10 @@
  
  <mapper namespace="org.zerock.mapper.BoardMapper">
  	
+ 	<select id="rank" resultType="org.zerock.domain.RankVO">
+ 	<![CDATA[select * from (select writer, count(*) cn from tbl_board group by writer order by cn desc) where ROWNUM < 4]]>
+ 	</select>
+ 	
  	<select id="getList" resultType="org.zerock.domain.BoardVO">
  		<![CDATA[ select * from tbl_board order by bno desc
  		]]>
