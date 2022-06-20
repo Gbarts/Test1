@@ -34,8 +34,8 @@
 	 						
 	 						<br>
 	 					
-	 						<button class="btn btn-warning" onclick="location.href='/board/modify?bno=${board.bno}'">변경하기</button>
-	 						<button class="btn btn-info" onclick="location.href='/board/list'">목록보기</button>
+	 						<button class="btn btn-warning" onclick="location.href='/board/modify?bno=${board.bno}&pageNum=${criteria.pageNum }&amount=${criteria.amount }'">변경하기</button>
+	 						<button class="btn btn-info" onclick="location.href='/board/list?pageNum=${criteria.pageNum}&amount=${criteria.amount}'">목록보기</button>
 	 				
  
  

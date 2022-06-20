@@ -15,7 +15,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            게시판 목록보기 <a href="/board/register">글등록</a> &nbsp;&nbsp;&nbsp;&nbsp; 총글개수(${pageMaker.total})
+                            게시판 목록보기 <a href="/board/register">글등록</a> &nbsp;&nbsp;&nbsp;&nbsp; 총글개수(${pageMaker.total}) <a href="/board/ranking"> 랭킹 </a>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -34,7 +34,7 @@
 <c:forEach var="board" items="${list}" >              
                                   <tr class="odd gradeX">
                                    <td>${board.bno}</td>
-                                   <td><a href="/board/get?bno=${board.bno}">${board.title}</a></td>
+                                   <td><a href="/board/get?bno=${board.bno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}">${board.title}</a></td>
                                    <td><c:out value="${board.writer}"/></td>
                                    <td><fmt:formatDate pattern="yyy-MM-dd" value="${board.regdate }"/></td>
                                    <td><fmt:formatDate pattern="MM-dd hh:mm" value="${board.updatedate}"/></td>
