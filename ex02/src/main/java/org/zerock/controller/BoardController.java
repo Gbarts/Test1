@@ -82,9 +82,14 @@ public class BoardController {
 	public void rank(Criteria cri,Model model) {
 		model.addAttribute("rank", service.rank());
 	}
+	// / board/dist
 	@GetMapping("/dist")
-		public void dist() {
-		
+		public void dist(Criteria cri, Model model) {
+		model.addAttribute("dist", service.dist());
+	}
+	@GetMapping("/writers")
+		public void writers(BoardVO vo,Criteria cri,Model model) {
+		model.addAttribute("writers",service.writers());
 	}
 }
 

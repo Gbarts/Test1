@@ -8,9 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:forEach items="${dist}" var="temp">
-중복된글: ${temp.du} 
-</c:forEach> <br>
+<c:forEach items="${writers}" var="temp">
+작성자: ${temp.writer} 글:${temp.cn} <br>
+</c:forEach>
 <button type="button" onclick='location.href="/board/list?pageNum=${criteria.pageNum}&amount=${criteria.amount}"'>목록보기</button>
+
 </body>
 </html>

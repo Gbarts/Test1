@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.DistVO;
 import org.zerock.domain.RankVO;
+import org.zerock.domain.WritersVO;
 import org.zerock.mapper.BoardMapper;
 
 import lombok.AllArgsConstructor;
@@ -52,6 +54,16 @@ public class BoardServiceImpl implements BoardService{
 	public List<RankVO> rank() {
 		return mapper.rank();
 		
+	}
+
+	@Override
+	public List<DistVO> dist() {
+		return mapper.dist();
+	}
+
+	@Override
+	public List<WritersVO> writers() {
+	return mapper.writers();
 	}
 
 }

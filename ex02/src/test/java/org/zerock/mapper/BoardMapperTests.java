@@ -33,6 +33,8 @@ public class BoardMapperTests {
 	@Test
 	public void testGetListWithPaging() {
 		Criteria cri = new Criteria();
+		cri.setType("TW");
+		cri.setKeyword("a");
 		mapper.getListWithPaging(cri).forEach(vo -> log.info(vo));
 	}
 	

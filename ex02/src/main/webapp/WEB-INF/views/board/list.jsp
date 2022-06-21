@@ -17,7 +17,8 @@
                         <div class="panel-heading">
                             게시판 목록보기 <a href="/board/register">글등록</a> &nbsp;&nbsp;&nbsp;&nbsp; 총글개수(${pageMaker.total}) &nbsp;&nbsp;  
                             <a href="/board/rank?pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}">랭킹</a> 
-                            &nbsp;&nbsp; <a href="/board/dist">중복된 글</a>
+                            &nbsp;&nbsp; <a href="/board/dist?pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}">중복된 글</a>
+                            &nbsp;&nbsp; <a href="/board/writers?pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}">작성자 글개수</a>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">

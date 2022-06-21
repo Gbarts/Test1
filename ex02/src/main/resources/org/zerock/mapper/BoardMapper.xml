@@ -5,6 +5,15 @@
  
  <mapper namespace="org.zerock.mapper.BoardMapper">
  	
+ 	<select id="writers" resultType="org.zerock.domain.WritersVO">
+ 	<![CDATA[select distinct writer, count(*) cn from tbl_board group by writer]]>	
+ 	</select>
+ 	
+ 	<select id="dist" resultType="org.zerock.domain.DistVO">
+ 	<![CDATA[select (select count(*) from tbl_board) -(select count(*) from
+(select DISTINCT title, content, writer from tbl_board)) du from dual ]]>
+ 	</select>
+ 	
  	<select id="rank" resultType="org.zerock.domain.RankVO">
  	<![CDATA[select * from (select writer, count(*) cn from tbl_board group by writer order by cn desc) where ROWNUM < 4]]>
  	</select>
@@ -14,10 +23,31 @@
  		]]>
   	</select>
   	<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
-  	<![CDATA[
+  	
   	select bno,title,writer,regdate,updatedate from
 	(select rownum rn,bno,title,writer,regdate,updatedate from
-	(select * from tbl_board order by bno desc) 
+	(select * from tbl_board 
+	<where>
+	<trim prefixOverrides="OR">
+	<foreach item='type' collection="typeArr">
+	<trim prefix="OR">
+	<choose>
+		<when test='"type=="T"'>
+			title like '%'||{keyword}||'%'
+		</when>
+		<when test='"type=="C"'>
+			title like '%'||{keyword}||'%'
+		</when>
+		<when test='"type=="W"'>
+			title like '%'||{keyword}||'%'
+		</when>
+	</choose>
+	</trim>
+	</foreach>
+	</trim>
+	</where>
+	<![CDATA[
+	order by bno desc) 
 	where rownum<=(#{pageNum}*#{amount}))
 	where rn>((#{pageNum}-1)*#{amount})
 	]]>
