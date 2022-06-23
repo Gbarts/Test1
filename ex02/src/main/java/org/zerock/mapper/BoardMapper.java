@@ -44,7 +44,7 @@ public interface BoardMapper {
 	
 	
 	//임의추가 - 글목록 개수
-	public Long count();
+	public Long count(Criteria cri);
 	
 	//임의추가 - 작성글 개수
 	//public Long count1(String user);  // -> ${user} 

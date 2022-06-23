@@ -4,7 +4,27 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
  
  <mapper namespace="org.zerock.mapper.BoardMapper">
- 	
+  <sql id="criteria">
+   		<where>	
+    		<trim prefixOverrides="OR">
+	    		<foreach  item='type'  collection="typeArr">
+	      			<trim prefix="OR">
+	    			<choose>
+	    				<when test='type=="T"'>
+	    					title like '%'||#{keyword}||'%'   
+	    				</when>
+	    				<when test='type=="C"'>
+	    					content like '%'||#{keyword}||'%'   
+	    				</when>
+	    				<when test='type=="W"'>
+	    					writer like '%'||#{keyword}||'%'   
+	    				</when>
+	    			</choose>
+	    	 		</trim>
+	    		</foreach>
+    		</trim>
+    	</where>	
+ </sql>
  	<select id="writers" resultType="org.zerock.domain.WritersVO">
  	<![CDATA[select distinct writer, count(*) cn from tbl_board group by writer]]>	
  	</select>
@@ -24,28 +44,12 @@
   	</select>
   	<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
   	
-  	select bno,title,writer,regdate,updatedate from
-	(select rownum rn,bno,title,writer,regdate,updatedate from
-	(select * from tbl_board 
-	<where>
-	<trim prefixOverrides="OR">
-	<foreach item='type' collection="typeArr">
-	<trim prefix="OR">
-	<choose>
-		<when test='"type=="T"'>
-			title like '%'||{keyword}||'%'
-		</when>
-		<when test='"type=="C"'>
-			title like '%'||{keyword}||'%'
-		</when>
-		<when test='"type=="W"'>
-			title like '%'||{keyword}||'%'
-		</when>
-	</choose>
-	</trim>
-	</foreach>
-	</trim>
-	</where>
+  	select bno,title,writer,regdate,updatedate
+		from (select rownum rn,bno,title,writer,regdate,updatedate
+    		from (select * from tbl_board
+    	<include refid="criteria"></include>
+	
+	
 	<![CDATA[
 	order by bno desc) 
 	where rownum<=(#{pageNum}*#{amount}))
@@ -95,6 +99,7 @@
   	
   	<select id="count" resultType="long">
   		select count(*) from tbl_board
+  		<include refid="criteria"></include>
   	</select>
  
  	<select id="count1" resultType="long">

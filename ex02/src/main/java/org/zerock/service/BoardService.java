@@ -25,7 +25,7 @@ public interface BoardService {
 	public List<BoardVO> getList(Criteria cri);
 	
 	//퀴즈
-	public Long count();
+	public Long count(Criteria cri);
 	
 	//랭킹보기
 	public List<RankVO> rank();
